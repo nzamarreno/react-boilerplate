@@ -1,0 +1,52 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+$breakpointPrefix: "sm", "md", "lg", "xl";
+$breakpointSizes: 576px, 768px, 992px, 1200px;
+$wrapperSizes: 540px, 720px, 960px, 1140px;
+$gutter: 3rem;
+$column: 12;
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat($column, 1fr);
+    margin: auto;
+    padding-left: $gutter / 2;
+    padding-right: $gutter / 2;
+
+    @media screen and (min-width: $sm) {
+        grid-column-gap: $gutter;
+    }
+}
+
+@for $i from 1 through length($breakpointSizes) {
+    @media screen and (min-width: nth($breakpointSizes, $i)) {
+        .wrapper {
+            width: nth($wrapperSizes, $i);
+        }
+    }
+}
+
+// Basic column
+@for $i from 1 through $column {
+  .col-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Add Breakpoints
+@for $b from 1 through length($breakpointSizes) {
+  $prefix: nth($breakpointPrefix, $b);
+
+  @media screen and (min-width: #{nth($breakpointSizes, $b)}) {
+    @for $i from 1 through $column {
+      .col-#{$prefix}-#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+}
+

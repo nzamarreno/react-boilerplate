@@ -1,0 +1,57 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1.0
+  cypress: cypress-io/cypress@1.26.0
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: app-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  eslint:
+    executor: node/default
+    steps:
+      - attach_workspace:
+          at: .
+      - run: npm run eslint
+
+  test:
+    executor: node/default
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test your app
+          command: npm install
+      - run: npm test
+workflows:
+  buildAndTest:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+
+      - eslint:
+          requires:
+            - build
+
+      - cypress/run:
+          requires:
+            - build
+          start: 'npm run dev'
+          yarn: true

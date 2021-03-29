@@ -1,0 +1,33 @@
+.filter {
+    display: none;
+    align-items: center;
+    opacity: 0;
+    margin-bottom: 2rem;
+    transform: translateY(.5rem);
+    transition: all .6s 2.2s;
+
+    @include computer {
+        display: flex;
+    }
+
+    .--animate & {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        margin-right: 2rem;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+
+        button {
+            min-width: 15rem;
+            cursor: pointer;
+            margin: 0 .5rem;
+        }
+    }
+}

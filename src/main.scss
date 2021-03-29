@@ -1,0 +1,19 @@
+@import './styles/variables.scss';
+@import './styles/reset.scss';
+@import './styles/grid.scss';
+
+// Mixins
+@import './styles/mixins/fonts.scss';
+@import './styles/mixins/media-queries.scss';
+
+// Helpers
+@import './styles/helpers/colors.scss';
+
+// Components
+@import './components/Filter/index.scss';
+@import './components/Button/index.scss';
+@import './components/Input/index.scss';
+
+// Views
+@import './views/Home/index.scss';
+@import './views/Search/index.scss';

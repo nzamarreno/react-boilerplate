@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "lib": ["es2015", "dom"],
+        "jsx": "react",
+        "strict": false,
+        "declaration": true,
+        "outDir": "dist",
+        "sourceMap": true
+    },
+    "include": ["./src/**/*", "src/components/Button/button.test.tsx"],
+    "exclude": ["node_modules"]
+}

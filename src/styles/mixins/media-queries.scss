@@ -1,0 +1,23 @@
+@mixin phablet {
+  @media screen and (min-width: $sm) {
+    @content
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $md) {
+    @content
+  }
+}
+
+@mixin computer {
+  @media screen and (min-width: $lg) {
+    @content
+  }
+}
+
+@mixin wide {
+  @media screen and (min-width: $xl) {
+    @content
+  }
+}
